@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Event Management Design System - Glassmorphism + Neumorphism
+Primary: Blue to Purple gradient
+Accent: Neon Cyan highlights
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base Background - Deep space gradient */
+    --background: 240 20% 8%;
+    --foreground: 240 10% 95%;
+
+    /* Glass morphism cards */
+    --card: 240 15% 12%;
+    --card-foreground: 240 10% 95%;
+    --glass: 240 30% 15%;
+    --glass-border: 240 50% 25%;
+
+    /* Popovers and modals */
+    --popover: 240 15% 10%;
+    --popover-foreground: 240 10% 95%;
+
+    /* Primary gradient - Blue to Purple */
+    --primary: 250 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 260 80% 45%;
+    --primary-light: 240 100% 70%;
+
+    /* Secondary glassmorphism */
+    --secondary: 240 20% 20%;
+    --secondary-foreground: 240 10% 90%;
+
+    /* Muted elements */
+    --muted: 240 15% 15%;
+    --muted-foreground: 240 20% 65%;
+
+    /* Accent - Neon Cyan */
+    --accent: 180 100% 60%;
+    --accent-foreground: 240 20% 8%;
+    --neon: 180 100% 50%;
+    --neon-glow: 180 100% 70%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 120 60% 50%;
+    --warning: 45 100% 60%;
+
+    /* Borders and inputs */
+    --border: 240 30% 25%;
+    --input: 240 20% 15%;
+    --ring: 250 100% 60%;
+
+    /* Design tokens */
+    --radius: 1rem;
+    --glass-blur: blur(16px);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
+    --shadow-neon: 0 0 30px hsl(var(--neon) / 0.5);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(240 100% 60%), hsl(260 100% 60%));
+    --gradient-glass: linear-gradient(135deg, hsl(var(--glass) / 0.1), hsl(var(--glass) / 0.05));
+    --gradient-border: linear-gradient(135deg, hsl(var(--glass-border) / 0.3), hsl(var(--glass-border) / 0.1));
+    --gradient-hero: linear-gradient(135deg, hsl(240 30% 8%), hsl(260 40% 12%));
+    --gradient-accent: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--neon)));
+
+    /* Animation tokens */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --animation-float: float 6s ease-in-out infinite;
+    --animation-glow: glow 2s ease-in-out infinite alternate;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Glassmorphism utilities */
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid hsl(var(--glass-border) / 0.2);
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.1);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-border);
+  }
+
+  /* Neon glow effects */
+  .neon-glow {
+    box-shadow: var(--shadow-neon);
+    border: 1px solid hsl(var(--neon) / 0.3);
+  }
+
+  .primary-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Floating animation */
+  .float {
+    animation: var(--animation-float);
+  }
+
+  /* Smooth transitions */
+  .smooth-transition {
+    transition: var(--transition-smooth);
+  }
+
+  .bounce-transition {
+    transition: var(--transition-bounce);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hero section styles */
+  .hero-bg {
+    background: var(--gradient-hero);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, hsl(var(--primary) / 0.1), transparent 50%),
+                radial-gradient(circle at 70% 30%, hsl(var(--accent) / 0.1), transparent 50%);
+  }
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px hsl(var(--primary) / 0.2); }
+  100% { box-shadow: 0 0 40px hsl(var(--primary) / 0.4); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

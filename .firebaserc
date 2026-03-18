@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "eventx-e6936"
+  },
+  "targets": {
+    "eventx-e6936": {
+      "hosting": {
+        "default": [
+          "eventx-e6936"         
+        ]
+      }
+    }
+  
+}
+}
